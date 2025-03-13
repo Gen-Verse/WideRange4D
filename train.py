@@ -45,21 +45,21 @@ import torch
 
 def time_smoothness_loss(GaussianModel, t_prev, t_curr, mask_threshold=0.01):
     """
-    计算基于 L2 距离的时间平滑性损失。
+    Calculate the time smoothness loss and return deformation difference.
     """
-    # 准备输入数据
-    point = GaussianModel.get_xyz  # 原始点云位置
-    scales = GaussianModel._scaling  # 原始尺度
-    rotations = GaussianModel._rotation  # 原始旋转
-    opacity = GaussianModel._opacity  # 原始透明度
-    shs = GaussianModel.get_features  # 原始特征
+    # Prepare input data
+    point = GaussianModel.get_xyz  # Original point cloud positions
+    scales = GaussianModel._scaling  # Original scales
+    rotations = GaussianModel._rotation  # Original rotations
+    opacity = GaussianModel._opacity  # Original opacity
+    shs = GaussianModel.get_features  # Original features
 
-    # 确保时间张量的形状为 [batch_size, 1]
+    # Ensure time tensors have the shape [batch_size, 1]
     batch_size = point.shape[0]
     time_emb_curr = torch.full((batch_size, 1), t_curr, device=point.device)
     time_emb_prev = torch.full((batch_size, 1), t_prev, device=point.device)
 
-    # 调用 deform_network 计算不同时间步下的点云位置
+    # Call deform_network to compute point cloud positions at different timesteps
     xyz_curr, _, _, _, _ = GaussianModel._deformation(
         point, scales, rotations, opacity, shs, times_sel=time_emb_curr
     )
@@ -67,20 +67,43 @@ def time_smoothness_loss(GaussianModel, t_prev, t_curr, mask_threshold=0.01):
         point, scales, rotations, opacity, shs, times_sel=time_emb_prev
     )
 
-    # 计算变形差异
+    # Calculate deformation difference
     deformation_diff = torch.norm(xyz_curr - xyz_prev, dim=-1)
 
-    # 生成3D Mask：变形差异大于阈值的区域权重为1，否则为0
-    mask = (deformation_diff > mask_threshold).float()
+    # Generate 3D Mask: Regions with deformation difference greater than the threshold are prioritized
+    motion_mask = (deformation_diff > mask_threshold).float()
 
-    # 计算 L2 距离损失
+    # Calculate the L2 distance loss, weighted by the motion mask
     l2_loss = torch.norm(xyz_curr - xyz_prev, dim=-1)
-    masked_l2_loss = l2_loss * mask
+    masked_l2_loss = l2_loss * motion_mask
 
-    return torch.sum(masked_l2_loss) / (torch.sum(mask) + 1e-6)
-def dynamic_time_loss_weight(t_prev, t_curr, base_weight=0.01):
+    # Return the loss (as a scalar) and deformation difference
+    time_loss = torch.sum(masked_l2_loss) / (torch.sum(motion_mask) + 1e-6)
+    return time_loss.item(), deformation_diff  # Convert to scalar using .item()
+def dynamic_time_loss_weight(t_prev, t_curr, deformation_diff, base_weight=0.01):
+    """
+    Calculate the dynamic time loss weight based on the paper's method.
+    
+    Args:
+        t_prev (float): Previous timestep.
+        t_curr (float): Current timestep.
+        deformation_diff (torch.Tensor): Deformation difference between current and previous timesteps.
+        base_weight (float): Base weight for the loss.
+    
+    Returns:
+        float: Weighted loss (scalar).
+    """
+    # Calculate time interval
     time_interval = abs(t_curr - t_prev) * 100
-    return base_weight / (time_interval + 1.0)
+    
+    # Calculate similarity weight based on deformation difference
+    similarity_weight = 1.0 / (1.0 + torch.exp(-deformation_diff))
+    
+    # Combine time interval and similarity weight
+    weight = base_weight / (time_interval + 1.0) * similarity_weight
+    
+    # Return the weight as a scalar
+    return weight.mean().item()  # Convert to scalar using .item()
 
 def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_iterations, 
                          checkpoint_iterations, checkpoint, debug_from,
@@ -232,10 +255,10 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
                 time_smooth_loss = 0.0
             else:
                 t_prev = pre_times[0] if t_curr < pre_times[0] else pre_times[1]  # 上一个时间步
-                time_loss = time_smoothness_loss(gaussians, t_prev, t_curr)
-                time_loss_weight = dynamic_time_loss_weight(t_prev, t_curr, base_weight=0.01)
-                time_smooth_loss = time_loss_weight * time_loss
-        loss += time_smooth_loss
+                time_loss, deformation_diff = time_smoothness_loss(gaussians, t_prev, t_curr)
+                time_loss_weight = dynamic_time_loss_weight(t_prev, t_curr, deformation_diff, base_weight=0.01)
+                time_smooth_loss = time_loss_weight * time_loss  # time_loss is already a scalar
+        loss += time_smooth_loss  # Now time_smooth_loss is a scalar
 
         if stage == "fine" and hyper.time_smoothness_weight != 0:
             tv_loss = gaussians.compute_regulation(hyper.time_smoothness_weight, hyper.l1_time_planes, hyper.plane_tv_weight)
@@ -260,7 +283,7 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
             ema_loss_for_log = 0.4 * loss.item() + 0.6 * ema_loss_for_log
             ema_psnr_for_log = 0.4 * psnr_ + 0.6 * ema_psnr_for_log
             if time_smooth_loss != 0.0:
-                ema_time_loss_log = 0.4 * time_smooth_loss.item() + 0.6 * ema_time_loss_log
+                ema_time_loss_log = 0.4 * time_smooth_loss + 0.6 * ema_time_loss_log
             total_point = gaussians._xyz.shape[0]
             if iteration % 10 == 0:
                 progress_bar.set_postfix({"Loss": f"{ema_loss_for_log:.{7}f}",
