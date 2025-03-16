@@ -2,6 +2,7 @@
 <div align="center">
   
 # WideRange4D
+![WideRange4D](./figure/teaser.png)
 
 ### [Dataset Page](https://huggingface.co/datasets/Gen-Verse/WideRange4D/tree/main) | [arXiv Paper](#)
 
@@ -12,8 +13,6 @@
 <sup>*</sup> Equal Contributions. <sup>‡</sup> Corresponding Author.
 
 </div>
-
-![WideRange4D](./figure/teaser.png)
 
 ## Environmental Setups
 
