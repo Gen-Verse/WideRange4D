@@ -22,8 +22,8 @@ Please follow the [3D-GS](https://github.com/graphdeco-inria/gaussian-splatting)
 git clone https://github.com/Gen-Verse/WideRange4D
 cd WideRange4D
 git submodule update --init --recursive
-conda create -n Progress4D python=3.7 
-conda activate Progress4D
+conda create -n WideRange4D python=3.7 
+conda activate WideRange4D
 
 pip install -r requirements.txt
 pip install -e submodules/depth-diff-gaussian-rasterization
