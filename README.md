@@ -1,7 +1,7 @@
 
 <div align="center">
   
-# WideRange4D
+# WideRange4D: Enabling High-Quality 4D Reconstruction with Wide-Range Movements and Scenes
 ![WideRange4D](./figure/teaser.png)
 
 ### [Dataset Page](https://huggingface.co/datasets/Gen-Verse/WideRange4D/tree/main) | [arXiv Paper](#)
