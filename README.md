@@ -12,8 +12,7 @@
 <sup>*</sup> Equal Contributions. <sup>‡</sup> Corresponding Author.
 
 </div>
-
-[teaser.pdf](https://github.com/user-attachments/files/19270374/teaser.pdf)
+![WeChat42c952700f3e345ad96dcd887c1822f6](https://github.com/user-attachments/assets/4617ec88-794b-4c02-aabf-1b2c926868cc)
 
 ## Environmental Setups
 
