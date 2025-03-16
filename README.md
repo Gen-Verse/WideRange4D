@@ -74,7 +74,7 @@ If you want to train WideRange4D or your own dataset of multipleviews scenes, yo
 ```
 ├── data
 |   | multipleview
-│     | (your dataset name) 
+│     | (Our datasets name) 
 │   	  | cam01
 |     		  ├── frame_00001.jpg
 │     		  ├── frame_00002.jpg
@@ -191,32 +191,7 @@ python metrics.py --model_path "output/dnerf/bouncingballs/"
 ```
 
 ## Scripts
-
 There are some helpful scripts, please feel free to use them.
-
-`export_perframe_3DGS.py`:
-get all 3D Gaussians point clouds at each timestamps.
-
-usage:
-
-```python
-python export_perframe_3DGS.py --iteration 14000 --configs arguments/dnerf/lego.py --model_path output/dnerf/lego 
-```
-
-You will a set of 3D Gaussians are saved in `output/dnerf/lego/gaussian_pertimestamp`.
-
-`weight_visualization.ipynb`:
-
-visualize the weight of Multi-resolution HexPlane module.
-
-`merge_many_4dgs.py`:
-merge your trained 4dgs.
-usage:
-
-```python
-export exp_name="dynerf"
-python merge_many_4dgs.py --model_path output/$exp_name/sear_steak
-```
 
 `colmap.sh`:
 generate point clouds from input data
@@ -226,17 +201,13 @@ bash colmap.sh data/hypernerf/virg/vrig-chicken hypernerf
 bash colmap.sh data/dynerf/sear_steak llff
 ```
 
-**Blender** format seems doesn't work. Welcome to raise a pull request to fix it.
-
 `downsample_point.py` :downsample generated point clouds by sfm.
 
 ```python
 python scripts/downsample_point.py data/dynerf/sear_steak/colmap/dense/workspace/fused.ply data/dynerf/sear_steak/points3D_downsample2.ply
 ```
 
-In my paper, I always use `colmap.sh` to generate dense point clouds and downsample it to less than 40000 points.
-
-Here are some codes maybe useful but never adopted in my paper, you can also try it.
+Thanks 4DGaussians, We always use `colmap.sh` to generate dense point clouds and downsample it to less than 40000 points.
 
 
 ## Contributions
@@ -247,6 +218,7 @@ Here are some codes maybe useful but never adopted in my paper, you can also try
 
 Some source code of ours is borrowed from [4DGaussians](https://github.com/hustvl/4DGaussians). We sincerely appreciate the excellent work of these authors.
 
+## Citation
 ```
 
 ```
