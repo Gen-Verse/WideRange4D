@@ -190,9 +190,6 @@ You can just run the following script to evaluate the model.
 python metrics.py --model_path "output/dnerf/bouncingballs/" 
 ```
 
-
-## Viewer
-[Watch me](./docs/viewer_usage.md)
 ## Scripts
 
 There are some helpful scripts, please feel free to use them.
