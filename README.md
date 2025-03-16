@@ -13,6 +13,8 @@
 
 </div>
 
+[teaser.pdf](https://github.com/user-attachments/files/19270374/teaser.pdf)
+
 ## Environmental Setups
 
 Please follow the [3D-GS](https://github.com/graphdeco-inria/gaussian-splatting) to install the relative packages.
