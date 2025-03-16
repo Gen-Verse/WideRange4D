@@ -94,7 +94,7 @@ You need to ensure that the data folder is organized as follows after running mu
 ```
 ├── data
 |   | multipleview
-│     | (your dataset name) 
+│     | (Our dataset name) 
 │   	  | cam01
 |     		  ├── frame_00001.jpg
 │     		  ├── frame_00002.jpg
@@ -145,7 +145,7 @@ python train.py -s  data/hypernerf/virg/broom2/ --port 6017 --expname "hypernerf
 
 For training multipleviews scenes,you are supposed to build a configuration file named (you dataset name).py under "./arguments/mutipleview",after that,run
 ```python
-python train.py -s  data/multipleview/(your dataset name) --port 6017 --expname "multipleview/(your dataset name)" --configs arguments/multipleview/(you dataset name).py 
+python train.py -s  data/multipleview/(our dataset name) --port 6017 --expname "multipleview/(our dataset name)" --configs arguments/multipleview/(our dataset name).py 
 ```
 
 
