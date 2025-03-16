@@ -190,42 +190,6 @@ You can just run the following script to evaluate the model.
 python metrics.py --model_path "output/dnerf/bouncingballs/" 
 ```
 
-## Scripts
-
-There are some helpful scripts, please feel free to use them.
-
-`export_perframe_3DGS.py`:
-get all 3D Gaussians point clouds at each timestamps.
-
-usage:
-
-```python
-python export_perframe_3DGS.py --iteration 14000 --configs arguments/dnerf/lego.py --model_path output/dnerf/lego 
-```
-
-You will a set of 3D Gaussians are saved in `output/dnerf/lego/gaussian_pertimestamp`.
-
-`weight_visualization.ipynb`:
-
-visualize the weight of Multi-resolution HexPlane module.
-
-`merge_many_4dgs.py`:
-merge your trained 4dgs.
-usage:
-
-```python
-export exp_name="dynerf"
-python merge_many_4dgs.py --model_path output/$exp_name/sear_steak
-```
-
-`colmap.sh`:
-generate point clouds from input data
-
-```bash
-bash colmap.sh data/hypernerf/virg/vrig-chicken hypernerf 
-bash colmap.sh data/dynerf/sear_steak llff
-```
-
 **Blender** format seems doesn't work. Welcome to raise a pull request to fix it.
 
 `downsample_point.py` :downsample generated point clouds by sfm.
