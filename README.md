@@ -221,6 +221,11 @@ Some source code of ours is borrowed from [4DGaussians](https://github.com/hustv
 
 ## Citation
 ```
-
+@article{yang2025widerange4d,
+  title={WideRange4D: Enabling High-Quality 4D Reconstruction with Wide-Range Movements and Scenes},
+  author={Yang, Ling and Zhu, Kaixin and Tian, Juanxi and Zeng, Bohan and Lin, Mingbao and Pei, Hongjuan and Zhang, Wentao and Yan, Shuichen},
+  journal={arXiv preprint arXiv:},
+  year={2025}
+}
 ```
 
