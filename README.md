@@ -18,11 +18,11 @@
 Please follow the [3D-GS](https://github.com/graphdeco-inria/gaussian-splatting) to install the relative packages.
 
 ```bash
-git clone https://github.com/hustvl/4DGaussians
-cd 4DGaussians
+git clone https://github.com/Gen-Verse/WideRange4D
+cd WideRange4D
 git submodule update --init --recursive
-conda create -n Gaussians4D python=3.7 
-conda activate Gaussians4D
+conda create -n Progress4D python=3.7 
+conda activate Progress4D
 
 pip install -r requirements.txt
 pip install -e submodules/depth-diff-gaussian-rasterization
@@ -69,7 +69,7 @@ Meanwhile, [Plenoptic Dataset](https://github.com/facebookresearch/Neural_3D_Vid
 ```
 
 **For multipleviews scenes:**
-If you want to train your own dataset of multipleviews scenes, you can orginize your dataset as follows:
+If you want to train WideRange4D or your own dataset of multipleviews scenes, you can orginize your dataset as follows:
 
 ```
 ├── data
