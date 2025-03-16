@@ -190,7 +190,16 @@ You can just run the following script to evaluate the model.
 python metrics.py --model_path "output/dnerf/bouncingballs/" 
 ```
 
-**Blender** format seems doesn't work. Welcome to raise a pull request to fix it.
+## Scripts
+There are some helpful scripts, please feel free to use them.
+
+`colmap.sh`:
+generate point clouds from input data
+
+```bash
+bash colmap.sh data/hypernerf/virg/vrig-chicken hypernerf 
+bash colmap.sh data/dynerf/sear_steak llff
+```
 
 `downsample_point.py` :downsample generated point clouds by sfm.
 
@@ -198,9 +207,7 @@ python metrics.py --model_path "output/dnerf/bouncingballs/"
 python scripts/downsample_point.py data/dynerf/sear_steak/colmap/dense/workspace/fused.ply data/dynerf/sear_steak/points3D_downsample2.ply
 ```
 
-In my paper, I always use `colmap.sh` to generate dense point clouds and downsample it to less than 40000 points.
-
-Here are some codes maybe useful but never adopted in my paper, you can also try it.
+Thanks 4DGaussians, We always use `colmap.sh` to generate dense point clouds and downsample it to less than 40000 points.
 
 
 ## Contributions
@@ -211,6 +218,7 @@ Here are some codes maybe useful but never adopted in my paper, you can also try
 
 Some source code of ours is borrowed from [4DGaussians](https://github.com/hustvl/4DGaussians). We sincerely appreciate the excellent work of these authors.
 
+## Citation
 ```
 
 ```
