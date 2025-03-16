@@ -75,7 +75,7 @@ If you want to train WideRange4D or your own dataset of multipleviews scenes, yo
 ```
 ├── data
 |   | multipleview
-│     | (your dataset name) 
+│     | (Our datasets name) 
 │   	  | cam01
 |     		  ├── frame_00001.jpg
 │     		  ├── frame_00002.jpg
