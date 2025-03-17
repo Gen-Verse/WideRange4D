@@ -1,0 +1,8 @@
+# ninja log v5
+4	12865	1739862532263259561	/hanjiaming/tjx/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-312/simple_knn.o	fe7427f529419e1
+2	18476	1739862537862127000	/hanjiaming/tjx/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-312/ext.o	3cb58058bce47757
+6	62519	1739862581897455833	/hanjiaming/tjx/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-312/spatial.o	c6b02fa24213735e
+33	13454	1739863160949112179	/hanjiaming/tjx/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-312/simple_knn.o	fe7427f529419e1
+35	63033	1739863210492628000	/hanjiaming/tjx/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-312/spatial.o	c6b02fa24213735e
+35	12972	1740158906773374000	/hanjiaming/tjx/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-312/simple_knn.o	fe7427f529419e1
+39	19541	1740476253374116000	/hanjiaming/tjx/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-312/ext.o	5405b401c0264693
