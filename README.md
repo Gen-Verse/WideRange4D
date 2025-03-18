@@ -4,7 +4,7 @@
 # WideRange4D: Enabling High-Quality 4D Reconstruction with Wide-Range Movements and Scenes
 ![WideRange4D](./figure/teaser.png)
 
-### [Dataset Page](https://huggingface.co/datasets/Gen-Verse/WideRange4D/tree/main) | [arXiv Paper](https://arxiv.org/abs/2503.13435)
+### [Dataset Page](https://huggingface.co/datasets/Gen-Verse/WideRange4D) | [arXiv Paper](https://arxiv.org/abs/2503.13435)
 
 [Ling Yang](https://yangling0818.github.io)<sup>1*‡</sup>, [Kaixin Zhu](https://chriszkxxx.github.io)<sup>1*</sup>, [Juanxi Tian](https://tianshijing.github.io)<sup>1*</sup>, [Bohan Zeng](https://scholar.google.com/citations?user=MHo_d3YAAAAJ&hl=en)<sup>1*†</sup>, [Mingbao Lin](http://lmb.bjbxit.cn/)<sup>3</sup>, [Hongjuan Pei](https://openreview.net/profile?id=~Hongjuan_Pei1)<sup>2</sup>, [Wentao Zhang](https://zwt233.github.io)<sup>1</sup>, [Shuicheng Yan](http://yanshuicheng.info)<sup>3‡</sup>
 
