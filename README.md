@@ -14,6 +14,12 @@
 
 </div>
 
+## Example
+
+
+https://github.com/user-attachments/assets/63d8fe13-b3b4-46ba-8c8d-19e67bb3964d
+
+
 ## Environmental Setups
 
 Please follow the [3D-GS](https://github.com/graphdeco-inria/gaussian-splatting) to install the relative packages.
