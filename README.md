@@ -19,6 +19,10 @@
 https://github.com/user-attachments/assets/1a31f3fa-f5a1-4cb7-aa3d-4152b6a1b49c
 
 
+https://github.com/user-attachments/assets/1b0e0696-fbed-4b44-8f5e-b14e48a5961d
+
+
+
 ## Environmental Setups
 
 Please follow the [3D-GS](https://github.com/graphdeco-inria/gaussian-splatting) to install the relative packages.
